@@ -20,13 +20,6 @@ export default async function Blogs(){
     const blogs:BlogType[] = await getBlogs();
     return(
         <div className="h-screen">
-            <div className="p-5 flex justify-between border-b xl:pl-15 xl:pr-15  mb-5 border-b-borderColor">
-                <h1 className="animate-pulse font-extrabold text-3xl "> BLOGS</h1>
-                <div className="flex gap-5">
-                    <Button name="Add Blogs"></Button>
-                    <Button  name="Login"></Button>
-                </div>
-            </div>
             <div className="flex flex-col gap-5 justify-center items-center m-5 pb-10">
                 {blogs.map((b, id)=>{
                     const date = new Date();
@@ -39,11 +32,6 @@ export default async function Blogs(){
     )
 }
 
-function Button(props:{name: string}){
-    return(
-    <button className="bg-bgButton text-textButton rounded-2xl p-3 pl-10 pr-10 font-medium w-fit hover:bg-hoverbutton active:bg-hoverbutton">{props.name}</button>
-    );
-}
 
 interface BlogInterface{
     name: string,
