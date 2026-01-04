@@ -7,8 +7,16 @@
   --color-textButton: #f8f5f5;
   --color-borderColor: #b6abab;
   --color-hoverbutton: #2a2a5cc2;
-}
+  --animate-typing: typing 5s steps(30) infinite alternate, blink 0.7s infinite;;
 
+}
+@keyframes typing{
+          from {width: 0}
+          to {width: 100%}
+}
+ @keyframes blink {
+    50% { border-color: transparent }
+  }
 body{
   background-color: var(--color-bgPrimary);
   color: black;
