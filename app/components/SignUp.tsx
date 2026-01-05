@@ -1,4 +1,4 @@
-export default function SignUp() {
+export function SignUpComponent() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="border border-borderColor w-fit rounded-xl p-10 text-lg shadow-xl">

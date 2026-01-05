@@ -1,4 +1,4 @@
-export default function SignIn() {
+export function SignInComponent() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white border border-borderColor w-fit rounded-xl p-10 text-lg">
