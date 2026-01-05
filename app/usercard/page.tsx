@@ -23,14 +23,8 @@ interface responseType{
 
 
 export default async function User(){
+    // await new Promise(r=> setTimeout(r, 5000));
     const data:responseType = await getDetails();
-    if(!data){
-        return(
-            <div className="flex justify-center items-center gap-10 align-middle h-96">
-                <div className="animate-pulse text-2xl flex justify-center items-center text-gray-800 font-semibold">Loading...</div>
-            </div>
-        )
-    }
     return(
         <div className="flex justify-center items-center gap-2 flex-col ">
             <div className="border border-borderColor p-5 rounded-2xl shadow text-2xl">
