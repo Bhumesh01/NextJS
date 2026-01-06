@@ -2,7 +2,9 @@ import Link from "next/link";
 export function Navbar(){
     return(
         <div className="p-5 flex justify-between border-b xl:pl-15 xl:pr-15  mb-5 border-b-borderColor">
-            <h1 className="animate-pulse font-extrabold text-3xl "> BLOGS</h1>
+            <Link href="/">
+                <h1 className="animate-pulse font-extrabold text-3xl "> BLOGS</h1>
+            </Link>
             <div className="flex gap-5">
                 <Link href="/signup">
                     <Button name="Sign Up"></Button>
