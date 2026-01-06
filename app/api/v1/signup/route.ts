@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import client from "../prisma"
+import client from "../../../lib/db"
 interface Details{
   name: string,
   password: string,

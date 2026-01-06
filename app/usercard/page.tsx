@@ -1,5 +1,5 @@
 // import axios from "axios";
-import client from "../api/v1/prisma";
+import client from "../lib/db";
 // You don't need a separate endpoint for fetching user data, you can directly achieve this in this component itself, All the async logic remains in the server it is not sent to the client, only the HTML is sent to the client.
 async function getDetails():Promise<ResponseType | null>{
     try{
