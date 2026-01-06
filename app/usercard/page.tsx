@@ -1,30 +1,49 @@
-import axios from "axios";
-
-async function getDetails(){
+// import axios from "axios";
+import client from "../api/v1/prisma";
+// You don't need a separate endpoint for fetching user data, you can directly achieve this in this component itself, All the async logic remains in the server it is not sent to the client, only the HTML is sent to the client.
+async function getDetails():Promise<ResponseType | null>{
     try{
-        const response = await axios.get("http://localhost:3000/api/v1/user/details");
-        return response.data;
+        const response = await client.user.findFirst({});
+        if (!response) return null;
+        return {
+            name: response.username,
+            email: response.email,
+            address: {
+              city: response.city,
+              state: response.state,
+              houseNumber: response.houseNumber,
+            },
+        };
     }
     catch(err){
         console.log("Error fetching details");
-        return "";
+        return null;
     }
 }
 
-interface responseType{
+interface ResponseType{
   name: string,
   email: string,
-  address: {
+  address:{
     city: string,
     state: string,
     houseNumber: string
   }
-}
+};
 
 
 export default async function User(){
     // await new Promise(r=> setTimeout(r, 5000));
-    const data:responseType = await getDetails();
+    const data = await getDetails();
+    if(!data){
+        return(
+            <div className="flex justify-center items-center gap-2 flex-col ">
+            <div className="border border-borderColor p-5 rounded-2xl shadow text-2xl">
+                <h3>Error Fetching User</h3>
+            </div>
+            </div>
+        )
+    }
     return(
         <div className="flex justify-center items-center gap-2 flex-col ">
             <div className="border border-borderColor p-5 rounded-2xl shadow text-2xl">
