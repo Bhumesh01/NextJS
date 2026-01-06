@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET(){
     return NextResponse.json({
   "name": "Harkirat",
+  "password": "1234@Harkirat",
   "email": "harkirat@gmail.com",
   "address": {
     "city": "Delhi",
