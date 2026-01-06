@@ -25,14 +25,6 @@ export async function POST(req:NextRequest){
 }
 
   return NextResponse.json({
-    message: "Successfully Signed Up",
-    name: body.name,
-    password: body.password,
-    email: body.email,
-    address:{
-      city: body.address.city,
-      state: body.address.state,
-      houseNumber: body.address.houseNumber
-    }
-  }, {status: 200})
+    message: "Successfully Signed Up"
+    }, {status: 200})
 }

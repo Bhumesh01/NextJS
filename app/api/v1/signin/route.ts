@@ -19,8 +19,5 @@ export async function POST(req:NextRequest){
 
   return NextResponse.json({
     message: "Successfully Signed In",
-    name: body.name,
-    password: body.password,
-    email: body.email
-  }, {status: 200})
+   }, {status: 200})
 }
