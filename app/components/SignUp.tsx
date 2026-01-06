@@ -31,7 +31,7 @@ export function SignUpComponent() {
           address:{
             city: city,
             state: state,
-            houseNumber: Number(houseNumber)
+            houseNumber: houseNumber
           }
         });
       if(response.status == 200){

@@ -1,4 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
+import { PrismaClient } from "@/app/generated/prisma/client";
+import {Pool} from "pg";
+import dotenv from "dotenv"
+import { PrismaPg } from "@prisma/adapter-pg"
+dotenv.config();
+const pool = new Pool({connectionString: process.env.DATABASE_URL});
+const adapter = new PrismaPg(pool);
+const client = new PrismaClient({adapter});
 interface Details{
   name: string,
   password: string,
@@ -6,7 +14,7 @@ interface Details{
   address:{
     city: string,
     state: string,
-    houseNumber: number
+    houseNumber: string
   }
 }
 export async function POST(req:NextRequest){
@@ -23,8 +31,25 @@ export async function POST(req:NextRequest){
     { status: 400 }
   );
 }
-
-  return NextResponse.json({
-    message: "Successfully Signed Up"
-    }, {status: 200})
+  try{
+    const response = await client.user.create({
+      data: {
+        username: body.name,
+        password: body.password,
+        email: body.email,
+        houseNumber: body.address.houseNumber,
+        city: body.address.city,
+        state: body.address.state
+      }
+    });
+    return NextResponse.json({
+      message: "Successfully Signed Up"
+      }, {status: 200})
+  }
+  catch(err){
+    console.log(err);
+    return NextResponse.json({
+      message: "Internal Server Error"
+    }, {status: 500})
+  }
 }
