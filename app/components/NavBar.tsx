@@ -6,6 +6,9 @@ export function Navbar(){
                 <h1 className="animate-pulse font-extrabold text-3xl "> BLOGS</h1>
             </Link>
             <div className="flex gap-5">
+                <Link href="/usercard">
+                    <Button name="Profile"></Button>
+                </Link>
                 <Link href="/signup">
                     <Button name="Sign Up"></Button>
                 </Link>

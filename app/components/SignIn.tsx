@@ -25,8 +25,12 @@ export function SignInComponent() {
         });
       if(response.status == 200){
         setMessage(response.data.message);
+        localStorage.setItem("token", response.data.token);
         router.push("/blogs");
         return;
+      }
+      else{
+        setMessage(response.data.message);
       }
     }
     catch(err){
