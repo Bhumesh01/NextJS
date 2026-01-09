@@ -1,17 +1,9 @@
-"use client"
-import { SessionProvider, signIn, useSession } from "next-auth/react";
+// import { SessionProvider, signIn, useSession, signOut } from "next-auth/react";
 import Link from "next/link";
-import {signOut} from "next-auth/react"
-export function Navbar(){
-    return<div>
-        <SessionProvider>
-            <NavbarComponent></NavbarComponent>
-        </SessionProvider>
-    </div>
-}
+import { getServerSession } from "next-auth";
 
-function NavbarComponent(){
-    const session = useSession();
+export async function Navbar(){
+    const session = await getServerSession();
     return(
         <div className="p-5 flex justify-between border-b xl:pl-15 xl:pr-15  mb-5 border-b-borderColor">
             <Link href="/">
@@ -24,11 +16,16 @@ function NavbarComponent(){
                 <Link href="/signup">
                     <Button name="Sign Up"></Button>
                 </Link>
-                <button className="bg-bgButton text-textButton rounded-2xl p-3 pl-10 pr-10 font-medium w-fit hover:bg-hoverbutton active:bg-hoverbutton" onClick={()=>{
-                    if(session.status==="authenticated")signOut();
-                    else signIn();
-                }} >{`${session.status==='authenticated'?'LogOut':'SignIn'}`}</button>
-                
+                 {session ? (
+          <Link href="/api/auth/signout">
+            <Button name="Logout" />
+          </Link>
+        ) : (
+          <Link href="/api/auth/signin">
+            <Button name="Sign In" />
+          </Link>
+        )}
+                 
             </div>
         </div>
     )
